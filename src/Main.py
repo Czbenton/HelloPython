@@ -5,32 +5,47 @@ x = 500
 accountList[name] = x
 
 
-def menuSelect(userInput):
-    return {
-        '1': print("Your current balance is", accountList[userName]),
-        '2': 2,
-        '3': 3,
-        '4': 4,
-        '5': 5,
-    }
+def login():
+    global userName
+    print("Welcome to The Bank of Python. Please enter your name.")
+    userName = input()
+    print("Hi ", userName, "!! How much would you like to deposit to start your account?", sep="")
+    initDeposit = float(input())
+    accountList[userName] = initDeposit
 
 
-print("Welcome to The Bank of Python. Please enter your name.")
+def menuSelect():
+    print(
+        "What would you like to do?:\n 1. Check Balance  2. Withdraw Funds  3. Deposit Funds"
+        "  4. Cancel  5. DELETE ACCOUNT")
+    optionSelect = input()
 
-userName = input()
+    if optionSelect == "1":
+        print("Your current balance is", accountList[userName])
+    elif optionSelect == "2":
+        print("How much do you want to withdraw?")
+        withdraw = float(input())
+        accountList[userName] -= withdraw
+    elif optionSelect == "3":
+        print("How much would you like to deposit?")
+        deposit = float(input())
+        accountList[userName] += deposit
+    elif optionSelect == "4":
+        print("See you next time!")
+    elif optionSelect == "5":
+        print("Are you sure you want to DELETE your account? [yes] [no]")
+        userInput = input()
+        if userInput == "yes":
+            del(accountList[userName])
+        else:
+            print("Okay, your account is not gone forever.")
 
-print("Hi ", userName, "!! How much would you like to deposit to start your account?", sep="")
+        return
 
-initDeposit = input()
 
-accountList[userName] = initDeposit
-print(
-    "What would you like to do?:\n 1. Check Balance  2. Withdraw Funds  3. Deposit Funds  4. Cancel  5. DELETE ACCOUNT")
+login()
 
-optionSelect = input()
-
-while optionSelect != '4':
-    menuSelect(optionSelect)
+menuSelect()
 
 
 
@@ -39,4 +54,4 @@ while optionSelect != '4':
 
 
 
-# print("\n", accountList, "\n")
+print("\n", accountList, "\n")
