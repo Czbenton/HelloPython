@@ -1,9 +1,5 @@
 accountList = {"zach": 343}
 
-name = "zach2"
-x = 500
-accountList[name] = x
-
 
 def login():
     global userName
@@ -32,6 +28,7 @@ def menuSelect():
         accountList[userName] += deposit
     elif optionSelect == "4":
         print("See you next time!")
+        exit()
     elif optionSelect == "5":
         print("Are you sure you want to DELETE your account? [yes] [no]")
         userInput = input()
@@ -39,19 +36,12 @@ def menuSelect():
             del(accountList[userName])
         else:
             print("Okay, your account is not gone forever.")
+    else:
+        print("Bad input")
 
         return
 
 
 login()
-
-menuSelect()
-
-
-
-
-
-
-
-
-print("\n", accountList, "\n")
+while True:
+    menuSelect()
